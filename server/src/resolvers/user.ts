@@ -38,11 +38,11 @@ export class UserResolver{
     async me(
         @Ctx() {req, em}: MyContext
     ){
-        if(!req.session.userId){
+        if(!req.session!.userId){
             return null;
         }
 
-        const user = await em.findOne(User, {id: req.session.userId});
+        const user = await em.findOne(User, {id: req.session!.userId});
         return user;
 
     }
@@ -76,13 +76,13 @@ export class UserResolver{
             if(err.code === '23505' || err.detail.includes('already exists')){
                 return {
                     errors:[{
-                        field: 'Username',
+                        field: 'username',
                         message: "username already exists"
                     }]
                 }
             }
         }
-        req.session.userId = user.id;
+        req.session!.userId = user.id;
 
         return {user};
     }
@@ -111,7 +111,7 @@ export class UserResolver{
             }
         }
 
-        req.session.userId = user.id;
+        req.session!.userId = user.id;
         
         return {
             user
