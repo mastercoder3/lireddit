@@ -2,7 +2,7 @@ import { ThemeProvider, CSSReset, ColorModeProvider } from '@chakra-ui/core'
 import { Provider, createClient } from 'urql';
 import theme from '../theme';
 
-const client = createClient({url: 'http://localhost:4000/graphql', 
+const client = createClient({url: 'http://127.0.0.1:4000/graphql', 
   fetchOptions: {
     credentials: 'include'
   }
